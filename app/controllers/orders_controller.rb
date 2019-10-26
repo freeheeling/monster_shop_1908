@@ -14,7 +14,9 @@ class OrdersController < ApplicationController
         order.item_orders.create(
           item: item,
           quantity: quantity,
-          price: item.price
+          price: item.price,
+          merchant_id: item.merchant_id,
+          status: order.status
         )
       end
       session.delete(:cart)
