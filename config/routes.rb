@@ -26,9 +26,11 @@ Rails.application.routes.draw do
   get '/profile', to: 'users#show'
   get '/profile/edit', to: 'users#edit_profile'
   get '/profile/edit_password', to: 'users#edit_password'
-  get '/profile/orders', to: 'users#show' # Change this when we come up with a solution
   patch '/profile/update', to: 'users#update_profile'
   patch '/profile/update_password', to: 'users#update_password'
+  
+  get '/profile/orders', to: 'user_orders#index'
+  get '/profile/orders/:id', to: 'user_orders#show', as: 'profile_order'
 
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create', as: 'login_create'

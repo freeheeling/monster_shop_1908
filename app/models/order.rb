@@ -9,7 +9,11 @@ class Order < ApplicationRecord
 
   enum status: %w[Pending Packaged Shipped Cancelled]
 
-  def grandtotal
+  def grand_total
     item_orders.sum('price * quantity')
+  end
+
+  def total_quantity
+    item_orders.sum(:quantity)
   end
 end
