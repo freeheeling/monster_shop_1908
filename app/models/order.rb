@@ -16,4 +16,8 @@ class Order < ApplicationRecord
   def total_quantity
     item_orders.sum(:quantity)
   end
+
+  def find_order(merchant)
+    item_orders.select('item_orders.*').where("merchant_id = #{merchant}")
+  end
 end
