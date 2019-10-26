@@ -4,5 +4,13 @@
   <p><%= "#{@merchant.city}, #{@merchant.state} #{@merchant.zip}" %></p>
 </section>
 
-<%= link_to 'View Items', merchant_user_items_path %>
+<%= @merchant.specific_orders.each do |itemorder| %>
+  <section id="order-<%=itemorder.order_id%>">
+    Order #<%= link_to("#{itemorder.order_id}", merchant_user_items_path(itemorder)) %>
+    Date Created: <%= itemorder.order.created_at %>
+    <p>Total Quantity: <%= itemorder.order_total_quantity %> </p>
+    <p>Grand Total: <%= number_to_currency(itemorder.order_total_cost) %> </p>
+  </section>
+<% end %>
 
+<%= link_to 'View Items', merchant_user_items_path %>

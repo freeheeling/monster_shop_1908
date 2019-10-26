@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'As a registered user' do
@@ -29,7 +31,7 @@ RSpec.describe 'As a registered user' do
 
       expect(page).to have_content("ID: #{order_1.id}")
 
-      within "#order-info" do
+      within '#order-info' do
         expect(page).to have_content("Date Created: #{order_1.created_at}")
         expect(page).to have_content("Last Updated: #{order_1.updated_at}")
         expect(page).to have_content("Status: #{order_1.status}")
@@ -74,7 +76,7 @@ RSpec.describe 'As a registered user' do
       )
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit profile_order_path(999999)
+      visit profile_order_path(999_999)
 
       expect(page).to have_content('The page you were looking for doesn\'t exist.')
     end

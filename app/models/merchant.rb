@@ -26,4 +26,8 @@ class Merchant < ApplicationRecord
   def distinct_cities
     item_orders.distinct.joins(:order).pluck(:city)
   end
+
+  def specific_orders
+    item_orders.group(:order_id).select('item_orders.order_id, sum(quantity) as order_total_quantity, sum(quantity * item_orders.price) as order_total_cost').where(status: 0)
+  end
 end

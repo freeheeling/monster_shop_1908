@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get '/profile/edit_password', to: 'users#edit_password'
   patch '/profile/update', to: 'users#update_profile'
   patch '/profile/update_password', to: 'users#update_password'
-  
+
   get '/profile/orders', to: 'user_orders#index'
   get '/profile/orders/:id', to: 'user_orders#show', as: 'profile_order'
 
@@ -44,5 +44,6 @@ Rails.application.routes.draw do
   namespace :merchant do
     get '/', to: 'dashboard#index', as: 'dashboard'
     get '/items', to: 'items#index', as: 'user_items'
+    get '/orders/:order_id', to: 'orders#show'
   end
 end
