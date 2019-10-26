@@ -4,7 +4,8 @@ require 'rails_helper'
 
 RSpec.describe 'As a Merchant' do
   it 'employee or admin I see the merchant dashboard' do
-    user = User.create(
+    meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
+    user = meg.users.create!(
       name: 'Bob',
       address: '123 Main',
       city: 'Denver',
