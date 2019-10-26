@@ -1,0 +1,10 @@
+<h1>All My Items</h1>
+
+<% @items.each do |item| %>
+  <section id= "item-<%= item.id %>">
+    <%= item.name %>
+    <% if item.active? %>
+      <%= link_to 'Deactivate Item', "/merchant/items/#{item.id}/deactivate", method: :patch %>
+    <% end %>
+  </section>
+<% end %>
