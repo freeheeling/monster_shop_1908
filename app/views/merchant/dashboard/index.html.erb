@@ -1,1 +1,8 @@
+<section id="merchant_details">
+  <h1><%= @merchant.name %></h1>
+  <p><%= @merchant.address %></p>
+  <p><%= "#{@merchant.city}, #{@merchant.state} #{@merchant.zip}" %></p>
+</section>
+
 <%= link_to 'View Items', merchant_user_items_path %>
+

@@ -101,7 +101,8 @@ RSpec.describe 'As a User' do
 
     describe 'as a merchant employee or merchant admin' do
       it 'when I enter my valid credentials, I am redirected to my merchant dashboard' do
-        merchant_employee = User.create(
+        meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
+        merchant_employee = meg.users.create!(
           name: 'Bob',
           address: '123 Main',
           city: 'Denver',
@@ -125,7 +126,8 @@ RSpec.describe 'As a User' do
       end
 
       it 'redirects me to the merchant dashboard if Im already logged in' do
-        merchant_admin = User.create(
+        meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
+        merchant_admin = meg.users.create!(
           name: 'Bob',
           address: '123 Main',
           city: 'Denver',

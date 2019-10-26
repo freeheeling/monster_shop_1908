@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validates_numericality_of :zip
 
   has_many :orders
+  belongs_to :merchant, optional:true
 
   enum role: %w[default merchant_employee merchant_admin site_admin]
 end
