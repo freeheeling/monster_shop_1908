@@ -10,7 +10,10 @@
       <% else %>
         <p>Inactive</p>
         <%= link_to 'Activate Item', "/merchant/items/#{item.id}/activate", method: :patch %>
-      <% end %>
+      <% end %><br>
+      <% if item.no_orders? %>
+        <%= link_to 'Delete Item', "/merchant/items/#{item.id}", method: :delete %>
+      <% end  %>
     </section>
   <% end %>
 </section>
