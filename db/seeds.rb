@@ -10,7 +10,7 @@ dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', c
 
 # bike_shop items
 tire = bike_shop.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
-pump = bike_shop.items.create(name: 'Bike Pump', description: 'It works fast!', price: 25, image: 'https://images-na.ssl-images-amazon.com/images/I/71Wa47HMBmL._SY550_.jpg', inventory: 15)
+pump = bike_shop.items.create(name: 'Bike Pump', description: 'It works fast!', price: 25, image: 'https://images-na.ssl-images-amazon.com/images/I/71Wa47HMBmL._SY550_.jpg', active?: false, inventory: 15)
 helmet = bike_shop.items.create(name: 'Helmet', description: 'Protects your brain. Try it!', price: 15, image: 'https://www.rei.com/media/product/1289320004', inventory: 20)
 
 # dog_shop items
@@ -45,13 +45,13 @@ dog_bowl.reviews.create(title: "It's okay.", content: 'Not that bad, I guess.', 
 dog_bowl.reviews.create(title: 'Amazing!', content: 'Truly changed my life!', rating: 5)
 
 # regular user
-user = User.create(name: 'Bob', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'user@user.com', password: 'secure', role: 0)
+user = User.create(name: 'User', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'user@user.com', password: 'secure', role: 0)
 
 # merchant employee
-user = User.create(name: 'Bob', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'merchant_employee@user.com', password: 'secure', role: 1)
+user = bike_shop.users.create(name: 'Merchant Employee', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'merchant_employee@user.com', password: 'secure', role: 1)
 
 # merchant admin
-user = User.create(name: 'Bob', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'merchant_admin@user.com', password: 'secure', role: 2)
+user = bike_shop.users.create(name: 'Merchant Admin', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'merchant_admin@user.com', password: 'secure', role: 2)
 
 # site admin
-user = User.create(name: 'Bob', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'site_admin@user.com', password: 'secure', role: 3)
+user = User.create(name: 'Site Admin', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'site_admin@user.com', password: 'secure', role: 3)
