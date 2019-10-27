@@ -8,7 +8,10 @@
   <section id= "item-<%= item.id %>">
     <%= item.name %>
     <% if item.active? %>
-      <%= link_to 'Deactivate Item', "/merchant/items/#{item.id}/deactivate", method: :patch %>
+      <%= link_to 'Deactivate Item', merchant_items_deactivate_path(item_id: item.id, activate_deactivate: 'deactivate'), method: :patch %>
+    <% end %>
+    <% if merchant_admin? %>
+      <%= link_to 'Edit', merchant_items_edit_path(item.id) %>
     <% end %>
   </section>
 <% end %>

@@ -5,7 +5,7 @@ RSpec.describe 'As a merchant' do
     describe 'when I click edit item from the merchant items index page' do
       before :each do
         @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-        @tire = @meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
+        @tire = @meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100.25, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
         merchant_admin = @meg.users.create!(
           name: 'Bob',
           address: '123 Main',
@@ -27,13 +27,13 @@ RSpec.describe 'As a merchant' do
       end
 
       it 'has a prepopulated form with the previous values' do
-        expect(current_path).to eq(merchant_items_edit_path)
+        expect(current_path).to eq(merchant_items_edit_path(@tire.id))
 
-        expect(find_field('Name').value).to eq 'Gatorskins'
-        expect(find_field('Price').value).to eq '$100.00'
-        expect(find_field('Description').value).to eq "They'll never pop!"
+        expect(find_field('Name').value).to eq('Gatorskins')
+        expect(find_field('Price').value).to eq('100.25')
+        expect(find_field('Description').value).to eq("They'll never pop!")
         expect(find_field('Image').value).to eq('https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588')
-        expect(find_field('Inventory').value).to eq '12'
+        expect(find_field('Inventory').value).to eq('12')
       end
 
       it 'can edit an item from the edit item form' do
@@ -67,7 +67,7 @@ RSpec.describe 'As a merchant' do
         fill_in :image, with: 'https://images-na.ssl-images-amazon.com/images/I/51HMpDXItgL._SX569_.jpg'
         fill_in :inventory, with: -1
 
-        click_button 'Create Item'
+        click_button 'Update Item'
 
         expect(page).to have_content('Price must be greater than 0')
         expect(page).to have_content('Inventory must be greater than 0')
@@ -80,7 +80,7 @@ RSpec.describe 'As a merchant' do
         fill_in :image, with: 'https://images-na.ssl-images-amazon.com/images/I/51HMpDXItgL._SX569_.jpg'
         fill_in :inventory, with: 5
 
-        click_button 'Create Item'
+        click_button 'Update Item'
 
         expect(page).to have_content('Name can\'t be blank')
         expect(page).to have_content('Description can\'t be blank')
