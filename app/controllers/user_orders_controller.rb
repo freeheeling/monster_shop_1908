@@ -7,4 +7,15 @@ class UserOrdersController < ApplicationController
     @order = Order.where(id: params[:id], user_id: current_user.id).first
     render_404 unless @order
   end
+  
+  def update
+    order = Order.where(id: params[:id], user_id: current_user.id).first
+    order.update(status: 'Cancelled')
+    order.item_orders.each do |item_order|
+      item_order.status = 'Unfulfilled'
+      # add functionality to return item inventory
+    end
+    flash[:notice] = 'Order has been cancelled!'
+    redirect_to profile_path
+  end
 end
