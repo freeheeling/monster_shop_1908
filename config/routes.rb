@@ -44,11 +44,13 @@ Rails.application.routes.draw do
   namespace :merchant do
     get '/', to: 'dashboard#index', as: 'dashboard'
     get '/items', to: 'items#index', as: 'user_items'
+
     get '/items/new', to: 'items#new'
     get '/items/:item_id/edit', to: 'items#edit', as: 'items_edit'
     post '/items', to: 'items#create'
     patch '/items/:item_id', to: 'items#update'
-    patch '/items/:item_id/:activate_deactivate', to: 'items#activate_deactivate', as: 'items_deactivate'
-    get '/orders/:order_id', to: 'orders#show'
+    get '/orders/:order_id', to: 'orders#show',  as: 'orders'
+    patch '/items/:item_id/:activate_deactivate', to: 'items#activate_deactivate'
+    delete '/items/:item_id', to: 'items#disable_item'
   end
 end

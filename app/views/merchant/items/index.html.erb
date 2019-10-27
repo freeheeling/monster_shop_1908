@@ -3,15 +3,23 @@
 <% if merchant_admin? %>
   <%= link_to 'Add New Item', merchant_items_new_path %>
 <% end %>
-
-<% @items.each do |item| %>
-  <section id= "item-<%= item.id %>">
-    <%= item.name %>
-    <% if item.active? %>
-      <%= link_to 'Deactivate Item', merchant_items_deactivate_path(item_id: item.id, activate_deactivate: 'deactivate'), method: :patch %>
-    <% end %>
-    <% if merchant_admin? %>
-      <%= link_to 'Edit', merchant_items_edit_path(item.id) %>
-    <% end %>
-  </section>
-<% end %>
+<section class="grid-container">
+  <% @items.each do |item| %>
+    <section class = "grid-item" id= "item-<%= item.id %>">
+      <%= item.name %>
+      <% if item.active? %>
+        <p>Active</p>
+        <%= link_to 'Deactivate Item', "/merchant/items/#{item.id}/deactivate", method: :patch %>
+      <% else %>
+        <p>Inactive</p>
+        <%= link_to 'Activate Item', "/merchant/items/#{item.id}/activate", method: :patch %>
+      <% end %><br>
+      <% if merchant_admin? %>
+        <%= link_to 'Edit', merchant_items_edit_path(item.id) %>
+        <% if item.no_orders? %>
+          <%= link_to 'Delete Item', "/merchant/items/#{item.id}", method: :delete %>
+        <% end  %>
+      <% end %>
+    </section>
+  <% end %>
+</section>

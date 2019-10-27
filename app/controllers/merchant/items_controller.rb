@@ -40,8 +40,19 @@ class Merchant::ItemsController < Merchant::BaseController
       item = Item.find(params[:item_id])
       item.toggle!(:active?)
       flash[:notice] = "#{item.name} is now deactivated and is no longer for sale."
-      redirect_to merchant_user_items_path
+    elsif params[:activate_deactivate] == 'activate'
+      item = Item.find(params[:item_id])
+      item.toggle!(:active?)
+      flash[:notice] = "#{item.name} is now activated and available for sale."
     end
+    redirect_to merchant_user_items_path
+  end
+
+  def disable_item
+    item = Item.find(params[:item_id])
+    current_user.merchant.items.delete(params[:item_id])
+    flash[:notice] = "#{item.name} is now removed from #{item.merchant.name}'s online inventory."
+    redirect_to merchant_user_items_path
   end
 
   private
