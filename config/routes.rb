@@ -46,5 +46,6 @@ Rails.application.routes.draw do
     get '/items', to: 'items#index', as: 'user_items'
     get '/orders/:order_id', to: 'orders#show', as: 'orders'
     patch '/items/:item_id/:activate_deactivate', to: 'items#activate_deactivate'
+    delete '/items/:item_id', to: 'items#disable_item'
   end
 end
