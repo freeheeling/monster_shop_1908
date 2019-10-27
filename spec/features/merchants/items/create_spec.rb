@@ -48,7 +48,7 @@ RSpec.describe 'As a merchant' do
         end
       end
 
-      xit 'can create a new item without and image' do
+      it 'can create a new item without and image' do
         meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
         merchant_admin = meg.users.create!(
           name: 'Bob',
@@ -83,7 +83,7 @@ RSpec.describe 'As a merchant' do
         expect(new_item.name).to eq('Chamois Buttr')
         expect(new_item.price).to eq(18)
         expect(new_item.description).to eq("No more chaffin'!")
-        expect(new_item.image).to eq('https://images-na.ssl-images-amazon.com/images/I/51HMpDXItgL._SX569_.jpg')
+        expect(new_item.image).to eq('https://d3i1chc4akc81x.cloudfront.net/images/default-img.png')
         expect(new_item.inventory).to eq(25)
         expect(new_item.active?).to eq(true)
       end
