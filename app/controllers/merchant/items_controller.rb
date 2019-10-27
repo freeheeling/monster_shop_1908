@@ -30,7 +30,7 @@ class Merchant::ItemsController < Merchant::BaseController
       flash[:success] = 'Item was successfully updated!'
       redirect_to merchant_user_items_path
     else
-      flash[:error] = item.errors.full_messages.to_sentence
+      flash[:error] = @item.errors.full_messages.to_sentence
       render :edit
     end
   end
@@ -58,6 +58,7 @@ class Merchant::ItemsController < Merchant::BaseController
   private
 
   def item_params
+    params[:image] = 'https://bit.ly/34a6p1g' if params[:image] == ""
     params.permit(:name, :description, :price, :inventory, :image)
   end
 end
