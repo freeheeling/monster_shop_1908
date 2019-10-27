@@ -48,9 +48,10 @@ Rails.application.routes.draw do
     get '/items/new', to: 'items#new'
     get '/items/:item_id/edit', to: 'items#edit', as: 'items_edit'
     post '/items', to: 'items#create'
-    patch '/items/:item_id', to: 'items#update'
-    get '/orders/:order_id', to: 'orders#show',  as: 'orders'
-    patch '/items/:item_id/:activate_deactivate', to: 'items#activate_deactivate'
+    patch '/items/:item_id', to: 'items#update', as: 'items_update'
+    patch '/items/:item_id/activate_deactivate/:activate_deactivate', to: 'items#activate_deactivate', as: 'items_activate_deactivate'
     delete '/items/:item_id', to: 'items#disable_item'
+
+    get '/orders/:order_id', to: 'orders#show',  as: 'orders'
   end
 end
