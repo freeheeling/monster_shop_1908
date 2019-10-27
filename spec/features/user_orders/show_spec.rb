@@ -80,5 +80,47 @@ RSpec.describe 'As a registered user' do
 
       expect(page).to have_content('The page you were looking for doesn\'t exist.')
     end
+
+    it 'displays a link to cancel the order' do
+      meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
+      brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
+
+      tire = meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
+      pull_toy = brian.items.create(name: 'Pull Toy', description: 'Great pull toy!', price: 10, image: 'http://lovencaretoys.com/image/cache/dog/tug-toy-dog-pull-9010_2-800x800.jpg', inventory: 32)
+
+      user = User.create(
+        name: 'Bob',
+        address: '123 Main',
+        city: 'Denver',
+        state: 'CO',
+        zip: 80_233,
+        email: 'bob@email.com',
+        password: 'secure'
+      )
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
+      order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
+
+      item_order_1 = order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
+      item_order_2 = order_1.item_orders.create!(item: pull_toy, price: pull_toy.price, quantity: 3)
+
+      visit profile_order_path(order_1)
+
+      within '#order-info' do
+        click_link 'Cancel Order'
+      end
+
+      expect(current_path).to eq(profile_path)
+      expect(page).to have_content('Order has been cancelled!')
+
+      order_1.reload
+      item_order_1.reload
+      item_order_2.reload
+
+      expect(order_1.status).to eq('Cancelled')
+      expect(item_order_1.status).to eq('Unfulfilled')
+      expect(item_order_2.status).to eq('Unfulfilled')
+    end
   end
 end
