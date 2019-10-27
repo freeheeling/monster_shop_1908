@@ -9,10 +9,10 @@
       <%= item.name %>
       <% if item.active? %>
         <p>Active</p>
-        <%= link_to 'Deactivate Item', "/merchant/items/#{item.id}/deactivate", method: :patch %>
+        <%= link_to 'Deactivate Item', "/merchant/items/#{item.id}/activate_deactivate/deactivate", method: :patch %>
       <% else %>
         <p>Inactive</p>
-        <%= link_to 'Activate Item', "/merchant/items/#{item.id}/activate", method: :patch %>
+        <%= link_to 'Activate Item', "/merchant/items/#{item.id}/activate_deactivate/activate", method: :patch %>
       <% end %><br>
       <% if merchant_admin? %>
         <%= link_to 'Edit', merchant_items_edit_path(item.id) %>

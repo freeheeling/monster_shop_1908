@@ -3,7 +3,7 @@
 <center>
   <%= render partial: 'partials/item_form',
     locals: {
-      path: merchant_items_edit_path(@item),
+      path: merchant_items_update_path(@item),
       method: :patch,
       name: @item.name,
       description: @item.description,
