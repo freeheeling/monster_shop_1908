@@ -51,6 +51,7 @@ user = User.create(name: 'User', address: '123 Main', city: 'Denver', state: 'CO
 user = bike_shop.users.create(name: 'Merchant Employee', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'merchant_employee@user.com', password: 'secure', role: 1)
 
 # merchant admin
+user = bike_shop.users.create(name: 'Merchant Admin', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'merchant_admin@user.com', password: 'secure', role: 2)
 
 # site admin
 user = User.create(name: 'Site Admin', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'site_admin@user.com', password: 'secure', role: 3)

@@ -1,10 +1,16 @@
 <h1>All My Items</h1>
 
-<% @items.each do |item| %>
-  <section id= "item-<%= item.id %>">
-    <%= item.name %>
-    <% if item.active? %>
-      <%= link_to 'Deactivate Item', "/merchant/items/#{item.id}/deactivate", method: :patch %>
-    <% end %>
-  </section>
-<% end %>
+<section class="grid-container">
+  <% @items.each do |item| %>
+    <section class = "grid-item" id= "item-<%= item.id %>">
+      <%= item.name %>
+      <% if item.active? %>
+        <p>Active</p>
+        <%= link_to 'Deactivate Item', "/merchant/items/#{item.id}/deactivate", method: :patch %>
+      <% else %>
+        <p>Inactive</p>
+        <%= link_to 'Activate Item', "/merchant/items/#{item.id}/activate", method: :patch %>
+      <% end %>
+    </section>
+  <% end %>
+</section>
