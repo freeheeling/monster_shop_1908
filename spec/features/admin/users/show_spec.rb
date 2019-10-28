@@ -16,8 +16,10 @@ RSpec.describe 'As an admin user' do
       site_admin = User.create(
         name: 'Site Admin',
         address: '123 First',
-        city: 'Denver', state: 'CO',
-        zip: 80_233, email: 'site_admin@user.com',
+        city: 'Denver', 
+        state: 'CO',
+        zip: 80_233, 
+        email: 'site_admin@user.com',
         password: 'secure',
         role: 3)
 
