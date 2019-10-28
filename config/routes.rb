@@ -53,6 +53,6 @@ Rails.application.routes.draw do
     post '/items', to: 'items#create'
     patch '/items/:item_id', to: 'items#update', as: 'items_update'
     patch '/items/:item_id/activate_deactivate/:activate_deactivate', to: 'items#activate_deactivate', as: 'items_activate_deactivate'
-    delete '/items/:item_id', to: 'items#disable_item'
+    patch '/items/disable/:item_id', to: 'items#disable_item', as: 'item_disable'
   end
 end
