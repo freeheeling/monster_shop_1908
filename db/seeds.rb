@@ -57,7 +57,7 @@ dog_employee = dog_shop.users.create(name: 'Dog Employee', address: '125 Doggo S
 
 # merchant admin
 bike_admin = bike_shop.users.create(name: 'Bike Admin', address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203, email: 'bike_admin@user.com', password: 'secure', role: 2)
-dog_admin = dog_shop.users.create(name: 'Dog Admin ', address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210, email: 'dog_admin@user.com', password: 'secure', role: 2)
+dog_admin = dog_shop.users.create(name: 'Dog Admin', address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210, email: 'dog_admin@user.com', password: 'secure', role: 2)
 
 # site admin
 site_admin = User.create(name: 'Site Admin', address: '123 First', city: 'Denver', state: 'CO', zip: 80_233, email: 'site_admin@user.com', password: 'secure', role: 3)
