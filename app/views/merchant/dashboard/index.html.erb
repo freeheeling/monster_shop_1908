@@ -4,10 +4,10 @@
   <p><%= "#{@merchant.city}, #{@merchant.state} #{@merchant.zip}" %></p>
 </section>
 
-<%= @merchant.specific_orders.each do |itemorder| %>
+<% @merchant.specific_orders.each do |itemorder| %>
   <section id="order-<%=itemorder.order_id%>">
-    Order #<%= link_to("#{itemorder.order_id}", merchant_user_items_path(itemorder)) %>
-    Date Created: <%= itemorder.order.created_at %>
+    <p>Order #<%= link_to("#{itemorder.order_id}", merchant_orders_path(itemorder.order_id)) %></p>
+    <p>Date Created: <%= itemorder.order.created_at %></p>
     <p>Total Quantity: <%= itemorder.order_total_quantity %> </p>
     <p>Grand Total: <%= number_to_currency(itemorder.order_total_cost) %> </p>
   </section>

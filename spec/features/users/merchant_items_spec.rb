@@ -79,5 +79,25 @@ RSpec.describe 'As a Merchant Admin' do
 
       expect(@pump.active?).to eq(true)
     end
+
+    it 'I see a link to delete an item that has never been ordered' do
+      within "#item-#{@tire.id}" do
+        expect(page).to_not have_link('Delete Item')
+      end
+
+      within "#item-#{@pump.id}" do
+        expect(page).to have_link('Delete Item')
+        click_link 'Delete Item'
+      end
+
+      expect(current_path).to eq(merchant_user_items_path)
+
+      expect(page).to have_content("#{@pump.name} is now removed from #{@meg.name}'s online inventory.")
+
+      within ".grid-container" do
+        expect(page).to have_content(@tire.name)
+        expect(page).to_not have_content(@pump.name)
+      end
+    end
   end
 end
