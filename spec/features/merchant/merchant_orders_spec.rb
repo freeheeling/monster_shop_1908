@@ -71,4 +71,20 @@ describe 'As a logged in Merchant (employee/admin)' do
       expect(page).to have_content("There are not enough #{@tire.name} in inventory to fullfill this order")
     end
   end
+
+  it 'I can click the fulfill order link and that item on the order is now fulfilled' do
+    within "#item-#{@pump.id}" do
+      click_link "Fulfill Order: #{@pump.name}"
+    end
+
+    expect(page).to have_content("The #{@pump.name} is now fulfilled.")
+
+    @pump.reload
+
+    within "#item-#{@pump.id}" do
+      expect(page).to have_content('Fulfilled')
+    end
+
+    expect(@pump.inventory).to eq(11)
+  end
 end

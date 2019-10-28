@@ -94,9 +94,12 @@ RSpec.describe 'As a Merchant Admin' do
 
       expect(page).to have_content("#{@pump.name} is now removed from #{@meg.name}'s online inventory.")
 
+      @pump.reload
+
+      expect(@pump.enabled?).to eq(false)
+
       within ".grid-container" do
         expect(page).to have_content(@tire.name)
-        expect(page).to_not have_content(@pump.name)
       end
     end
   end
