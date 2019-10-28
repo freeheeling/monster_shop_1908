@@ -119,6 +119,7 @@ RSpec.describe 'As a registered user' do
       item_order_1.reload
       item_order_2.reload
 
+      expect(tire.inventory).to eq(12)
       expect(pull_toy.inventory).to eq(35)
       expect(order_1.status).to eq('Cancelled')
       expect(item_order_1.status).to eq('Unfulfilled')
