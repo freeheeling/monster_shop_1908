@@ -2,12 +2,6 @@
 
 require 'rails_helper'
 
-# As a registered user
-# When I visit my Profile page
-# And I have orders placed in the system
-# Then I see a link on my profile page called "My Orders"
-# When I click this link my URI path is "/profile/orders"
-
 RSpec.describe 'As a registered user' do
   describe 'when I visit my profile page' do
     it 'can see all profile data on the page except the password' do
