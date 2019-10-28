@@ -11,6 +11,8 @@
       grand_total: @order.grand_total
     }
   %>
-<p><%= link_to 'Cancel Order', profile_order_path(@order), method: :patch %>
+<% if @order.status == 'Pending' %>
+  <p><%= link_to 'Cancel Order', profile_order_path(@order), method: :patch %>
+<% end %>
 </article>
 
