@@ -103,7 +103,7 @@ RSpec.describe 'As a registered user' do
       order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
 
       item_order_1 = order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
-      item_order_2 = order_1.item_orders.create!(item: pull_toy, price: pull_toy.price, quantity: 3)
+      item_order_2 = order_1.item_orders.create!(item: pull_toy, price: pull_toy.price, quantity: 3, status: 1)
 
       visit profile_order_path(order_1)
 
@@ -114,10 +114,12 @@ RSpec.describe 'As a registered user' do
       expect(current_path).to eq(profile_path)
       expect(page).to have_content('Order has been cancelled!')
 
+      pull_toy.reload
       order_1.reload
       item_order_1.reload
       item_order_2.reload
 
+      expect(pull_toy.inventory).to eq(35)
       expect(order_1.status).to eq('Cancelled')
       expect(item_order_1.status).to eq('Unfulfilled')
       expect(item_order_2.status).to eq('Unfulfilled')
