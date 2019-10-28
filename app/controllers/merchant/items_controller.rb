@@ -58,7 +58,7 @@ class Merchant::ItemsController < Merchant::BaseController
   private
 
   def item_params
-    params[:image] = 'https://bit.ly/34a6p1g' if params[:image] == ""
+    params[:image] = 'https://bit.ly/34a6p1g' if params[:image] == ''
     params.permit(:name, :description, :price, :inventory, :image)
   end
 end

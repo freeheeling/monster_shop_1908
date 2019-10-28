@@ -7,7 +7,7 @@ class ItemOrder < ApplicationRecord
   belongs_to :order
   has_one :merchant, through: :item
 
-  enum status: %w(Unfulfilled Fulfilled)
+  enum status: %w[Unfulfilled Fulfilled]
 
   def subtotal
     price * quantity

@@ -11,9 +11,7 @@ class Merchant::OrdersController < Merchant::BaseController
     item_order.update_attributes(status: 1)
     item_order.reduce_inventory
     flash[:success] = "The #{item_order.item.name} is now fulfilled."
-    if item_order.order.all_items_fulfilled?
-      item_order.order.update_status(1)
-    end
+    item_order.order.update_status(1) if item_order.order.all_items_fulfilled?
 
     redirect_to merchant_orders_path(params[:order_id])
   end
