@@ -51,5 +51,11 @@ RSpec.describe 'Site Navigation' do
         expect(page).to have_content('Cart: 0')
       end
     end
+
+    it 'does not have a link to Users (visible only to admins)' do
+      within 'nav' do
+        expect(page).to_not have_content('Users')
+      end
+    end
   end
 end
