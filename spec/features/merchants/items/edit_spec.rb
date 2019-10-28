@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'As a merchant' do
@@ -16,9 +18,9 @@ RSpec.describe 'As a merchant' do
           password: 'secure',
           role: 2
         )
-  
+
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(merchant_admin)
-  
+
         visit merchant_user_items_path
 
         within "#item-#{@tire.id}" do
@@ -48,9 +50,9 @@ RSpec.describe 'As a merchant' do
         expect(current_path).to eq(merchant_user_items_path)
 
         @tire.reload
-        
+
         expect(page).to have_content('Item was successfully updated!')
-        
+
         expect(@tire.name).to eq('Chamois Buttr')
         expect(@tire.price).to eq(18)
         expect(@tire.description).to eq("No more chaffin'!")
@@ -59,7 +61,7 @@ RSpec.describe 'As a merchant' do
         expect(@tire.active?).to eq(true)
 
         # Let's ask about this!
-        
+
         # within "#item-#{@tire.id}" do
         #   expect(page).to have_content('Chamois Buttr')
         #   expect(page).to have_content('Deactivate Item')

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'As a Merchant Admin' do
@@ -38,7 +40,6 @@ RSpec.describe 'As a Merchant Admin' do
 
   describe 'on my items page' do
     it 'I see a link to deactivate an active item' do
-
       within "#item-#{@pump.id}" do
         expect(page).to have_content('Inactive')
         expect(page).to_not have_link('Deactivate Item')
@@ -98,7 +99,7 @@ RSpec.describe 'As a Merchant Admin' do
 
       expect(@pump.enabled?).to eq(false)
 
-      within ".grid-container" do
+      within '.grid-container' do
         expect(page).to have_content(@tire.name)
       end
     end

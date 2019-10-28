@@ -74,7 +74,7 @@ RSpec.describe 'Create Merchant Items' do
 
       expect(page).to have_content("Name can't be blank")
       expect(page).to have_content("Inventory can't be blank")
-      expect(page).to have_content("Inventory is not a number")
+      expect(page).to have_content('Inventory is not a number')
       expect(page).to have_button('Create Item')
     end
   end
