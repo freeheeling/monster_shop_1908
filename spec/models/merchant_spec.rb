@@ -71,5 +71,27 @@ describe Merchant, type: :model do
 
       expect(@meg.distinct_cities.sort).to eq(%w[Denver Hershey])
     end
+
+    xit 'specific_orders' do
+      brian = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
+      chain = @meg.items.create(name: 'Chain', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
+      tire = @meg.items.create(name: 'tire', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
+      bone = brian.items.create(name: 'bone', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
+      user = User.create(
+        name: 'Bob',
+        address: '123 Main',
+        city: 'Denver',
+        state: 'CO',
+        zip: 80_233,
+        email: 'bob@email.com',
+        password: 'secure'
+      )
+      order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
+      order_item1 = order_1.item_orders.create!(item: bone, price: bone.price, quantity: 2)
+      order_item2 = order_1.item_orders.create!(item: chain, price: chain.price, quantity: 2)
+      order_item3 = order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
+
+      expect(@meg.specific_orders.to_a.count).to eq(2)
+    end
   end
 end
