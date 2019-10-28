@@ -7,7 +7,7 @@ class UserOrdersController < ApplicationController
     @order = Order.where(id: params[:id], user_id: current_user.id).first
     render_404 unless @order
   end
-  
+
   def update
     order = Order.where(id: params[:id], user_id: current_user.id).first
     order.update(status: 'Cancelled')

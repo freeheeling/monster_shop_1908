@@ -1,0 +1,10 @@
+<h1>All Orders</h1>
+
+<% @orders.each do |order| %>
+  <article id='order-<%= order.id %>'>
+    <p><%= link_to "#{order.user.name}", admin_users_path(order.user) %></p>
+    <p><%= "#{order.id}: #{order.status}" %></p>
+    <p><%= order.created_at %></p>
+    <hr>
+  </article>
+<% end %>

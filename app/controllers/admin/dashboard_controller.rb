@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
 class Admin::DashboardController < Admin::BaseController
-  def index; end
+  def index
+    @orders = Order.sort_orders
+  end
 end

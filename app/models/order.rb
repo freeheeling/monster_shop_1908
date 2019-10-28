@@ -28,4 +28,15 @@ class Order < ApplicationRecord
   def update_status(status)
     update_attributes(status: status)
   end
+
+  def self.sort_orders
+    order("
+      case
+        when status = 1 then 0
+        when status = 0 then 1
+        when status = 2 then 2
+        when status = 3 then 3
+      end
+      ")
+  end
 end
