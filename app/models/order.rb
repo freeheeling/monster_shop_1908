@@ -20,4 +20,12 @@ class Order < ApplicationRecord
   def find_order(merchant)
     item_orders.select('item_orders.*').where("merchant_id = #{merchant}")
   end
+
+  def all_items_fulfilled?
+    item_orders.where(status: 1).count == item_orders.count
+  end
+
+  def update_status(status)
+    update_attributes(status: status)
+  end
 end

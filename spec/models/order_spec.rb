@@ -35,16 +35,32 @@ describe Order, type: :model do
       )
       @order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
 
-      @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
-      @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3)
+      @item_order_1 = @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2, merchant_id: @meg.id, status: 1)
+      @item_order_2 = @order_1.item_orders.create!(item: @pull_toy, price: @pull_toy.price, quantity: 3, merchant_id: @brian.id, status: 1)
     end
 
-    it 'grandtotal' do
+    it 'grand_total' do
       expect(@order_1.grand_total).to eq(230)
     end
 
     it 'total_quantity' do
       expect(@order_1.total_quantity).to eq(5)
+    end
+
+    it 'find_order' do
+      expect(@order_1.find_order(@meg.id).count).to eq(1)
+    end
+
+    it 'all_items_fulfilled?' do
+      expect(@order_1.all_items_fulfilled?).to eq(true)
+    end
+
+    it 'update_status' do
+      expect(@order_1.status).to eq('Pending')
+
+      @order_1.update_status(1)
+
+      expect(@order_1.status).to eq('Packaged')
     end
   end
 end
