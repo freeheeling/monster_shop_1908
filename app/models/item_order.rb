@@ -17,4 +17,9 @@ class ItemOrder < ApplicationRecord
     new_inventory = item.inventory - quantity
     item.update_attributes(inventory: new_inventory)
   end
+
+  def return_inventory
+    new_inventory = item.inventory + quantity
+    item.update_attributes(inventory: new_inventory)
+  end
 end
