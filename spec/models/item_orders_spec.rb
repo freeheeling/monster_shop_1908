@@ -36,12 +36,20 @@ describe ItemOrder, type: :model do
       expect(@item_order_1.subtotal).to eq(200)
     end
 
-    it 'update item inventory' do
+    it '#reduce_inventory' do
       expect(@tire.inventory).to eq(12)
 
       @item_order_1.reduce_inventory
 
       expect(@tire.inventory).to eq(10)
+    end
+
+    it '#return_inventory' do
+      expect(@tire.inventory).to eq(12)
+
+      @item_order_1.return_inventory
+
+      expect(@tire.inventory).to eq(14)
     end
   end
 end

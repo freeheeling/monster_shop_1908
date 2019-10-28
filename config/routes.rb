@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   get '/profile/orders', to: 'user_orders#index'
   get '/profile/orders/:id', to: 'user_orders#show', as: 'profile_order'
+  patch '/profile/orders/:id', to: 'user_orders#update'
 
   get '/login', to: 'sessions#login'
   post '/login', to: 'sessions#create', as: 'login_create'
