@@ -13,7 +13,7 @@ class ItemOrder < ApplicationRecord
     price * quantity
   end
 
-  def update_item_inventory
+  def reduce_inventory
     new_inventory = item.inventory - quantity
     item.update_attributes(inventory: new_inventory)
   end

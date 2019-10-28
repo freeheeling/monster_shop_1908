@@ -38,8 +38,8 @@ describe ItemOrder, type: :model do
 
     it 'update item inventory' do
       expect(@tire.inventory).to eq(12)
-      
-      @item_order_1.update_item_inventory
+
+      @item_order_1.reduce_inventory
 
       expect(@tire.inventory).to eq(10)
     end
