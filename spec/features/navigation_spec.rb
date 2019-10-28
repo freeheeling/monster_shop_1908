@@ -53,6 +53,8 @@ RSpec.describe 'Site Navigation' do
     end
 
     it 'does not have a link to Users (visible only to admins)' do
+      visit welcome_path
+      
       within 'nav' do
         expect(page).to_not have_content('Users')
       end
