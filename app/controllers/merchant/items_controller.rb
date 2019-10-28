@@ -34,7 +34,7 @@ class Merchant::ItemsController < Merchant::BaseController
       render :edit
     end
   end
-  
+
   def activate_deactivate
     if params[:activate_deactivate] == 'deactivate'
       item = Item.find(params[:item_id])
@@ -50,7 +50,7 @@ class Merchant::ItemsController < Merchant::BaseController
 
   def disable_item
     item = Item.find(params[:item_id])
-    current_user.merchant.items.delete(params[:item_id])
+    item.toggle!(:enabled?)
     flash[:notice] = "#{item.name} is now removed from #{item.merchant.name}'s online inventory."
     redirect_to merchant_user_items_path
   end
