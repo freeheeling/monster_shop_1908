@@ -16,10 +16,10 @@ describe ItemOrder, type: :model do
   end
 
   describe 'instance methods' do
-    it 'subtotal' do
-      meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
-      tire = meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
-      user = User.create(
+    before(:each) do
+      @meg = Merchant.create(name: "Meg's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
+      @tire = @meg.items.create(name: 'Gatorskins', description: "They'll never pop!", price: 100, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 12)
+      @user = User.create(
         name: 'Bob',
         address: '123 Main',
         city: 'Denver',
@@ -28,10 +28,20 @@ describe ItemOrder, type: :model do
         email: 'bob@email.com',
         password: 'secure'
       )
-      order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
-      item_order_1 = order_1.item_orders.create!(item: tire, price: tire.price, quantity: 2)
+      @order_1 = @user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
+      @item_order_1 = @order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
+    end
 
-      expect(item_order_1.subtotal).to eq(200)
+    it 'subtotal' do
+      expect(@item_order_1.subtotal).to eq(200)
+    end
+
+    it 'update item inventory' do
+      expect(@tire.inventory).to eq(12)
+      
+      @item_order_1.update_item_inventory
+
+      expect(@tire.inventory).to eq(10)
     end
   end
 end
