@@ -1,0 +1,12 @@
+<section id='user-info'>
+  <%=
+    render partial: 'partials/user_info', locals: {
+      name: @user.name,
+      address: @user.address,
+      city: @user.city,
+      state: @user.state,
+      zip: @user.zip,
+      email: @user.email
+    }
+  %>
+</section>
