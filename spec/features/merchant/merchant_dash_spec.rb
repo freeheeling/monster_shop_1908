@@ -21,6 +21,7 @@ describe 'As a logged in Merchant (employee/admin)' do
 
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@merchant_employee)
   end
+  
   it 'on my dashboard, I see the name and address of the merchant I work for' do
     visit merchant_dashboard_path
 
