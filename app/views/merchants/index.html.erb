@@ -2,8 +2,20 @@
 <p align="center"><%= link_to "New Merchant", "/merchants/new" %></p>
 <section class = "grid-container">
   <% @merchants.each do |merchant|%>
-    <section class = "grid-item">
-      <h2><%=link_to merchant.name, "/merchants/#{merchant.id}"%></h2>
+    <section class = "grid-item" id='merchant-<%= merchant.id %>'>
+      <% if site_admin? %>
+        <p>
+          <%= link_to merchant.name, admin_merchants_path(merchant) %>
+          <%= "#{merchant.city}, #{merchant.state}"%>
+          <% if merchant.enabled? %>
+            <%= link_to 'Disable', admin_merchants_path(merchant), method: :patch %>
+          <% else %> 
+            <%= link_to 'Enable', admin_merchants_path(merchant), method: :patch %>
+          <% end %>
+        </p>
+      <% else %>
+        <p><%= link_to merchant.name, merchants_path(merchant) %></p>
+      <% end %>
     </section>
   <% end %>
 </section>
