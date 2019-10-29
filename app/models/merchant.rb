@@ -16,11 +16,11 @@ class Merchant < ApplicationRecord
   end
 
   def item_count
-    items.count
+    items.where(active?: true).count
   end
 
   def average_item_price
-    items.average(:price)
+    items.where(active?: true).average(:price)
   end
 
   def distinct_cities

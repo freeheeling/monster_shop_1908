@@ -13,6 +13,8 @@
   <p><%= link_to 'Edit Password', profile_edit_password_path %></p>
 </section>
 
-<section id='user-orders'>
-  <p><%= link_to 'My Orders', profile_orders_path %></p>
-</section>
+<% if !site_admin? %>
+  <section id='user-orders'>
+    <p><%= link_to 'My Orders', profile_orders_path %></p>
+  </section>
+<% end %>
