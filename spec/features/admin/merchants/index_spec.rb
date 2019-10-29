@@ -48,7 +48,22 @@ RSpec.describe 'As an admin user' do
       within "#merchant-#{@dog_shop.id}" do
         expect(page).to have_link('Disable')
       end
+    end
+      
+    it 'displays a flash message when a merchant account is disabled' do
+      within "#merchant-#{@bike_shop.id}" do
+        click_link 'Disable'
+      end
 
+      expect(page).to have_content("#{@bike_shop.name} has been disabled!")
+    end
+
+    it 'displays a flash message when a merchant account is enabled' do
+      within "#merchant-#{@dog_shop.id}" do
+        click_link 'Enable'
+      end
+
+      expect(page).to have_content("#{@dog_shop.name} has been enabled!")
     end
   end
 end
