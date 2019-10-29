@@ -2,7 +2,7 @@
 
 <% @users.each do |user| %>
   <article id='user-<%= user.id %>'>
-    <p><%= link_to user.name, admin_users_path(user) %></p>
+    <p><%= link_to user.name, "/admin/users/#{user.id}" %></p>
     <p><%= "Date Registered: #{user.created_at}" %></p>
     <p><%= "Role: #{user.role}" %></p>
   </article>
