@@ -49,12 +49,12 @@ RSpec.describe 'As an Admin User' do
       end
 
       within "#order-#{order.id}" do
-        expect(page).to have_link(order.id.to_s)
+        expect(page).to have_content(order.id)
         expect(page).to have_content("Date Created: #{order.created_at}")
         expect(page).to have_content("Total Quantity: #{order.total_quantity}")
         expect(page).to have_content("Grand Total: $#{order.grand_total}")
       end
-      
+
       expect(page).to have_link('View Items')
     end
   end
