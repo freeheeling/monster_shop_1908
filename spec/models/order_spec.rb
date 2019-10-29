@@ -62,6 +62,14 @@ describe Order, type: :model do
 
       expect(@order_1.status).to eq('Packaged')
     end
+
+    it 'packaged?' do
+      expect(@order_1.packaged?).to eq(false)
+
+      order_2 = @user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033, status: 1)
+
+      expect(order_2.packaged?).to eq(true)
+    end
   end
 
   describe 'class_method' do
