@@ -30,4 +30,12 @@ class Item < ApplicationRecord
   def no_orders?
     item_orders.empty?
   end
+
+  def self.five_most_popular_items
+    joins(:item_orders).group(:id).select('items.name, sum(quantity) as purchase_amount').order("purchase_amount desc").limit(5)
+  end
+
+  def self.five_least_popular_items
+    joins(:item_orders).group(:id).select('items.name, sum(quantity) as purchase_amount').order("purchase_amount").limit(5)
+  end
 end
