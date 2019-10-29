@@ -1,7 +1,10 @@
+
 # frozen_string_literal: true
 
 class Admin::MerchantsController < Admin::BaseController
-  def show; end
+  def show
+    @merchant = Merchant.find(params[:merchant_id])
+  end
 
   def toggle_active
     merchant = Merchant.find(params[:merchant_id])
