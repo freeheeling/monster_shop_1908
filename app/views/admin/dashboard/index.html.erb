@@ -5,6 +5,9 @@
     <p><%= link_to "#{order.user.name}", "/admin/users/#{order.user.id}" %></p>
     <p><%= "#{order.id}: #{order.status}" %></p>
     <p><%= order.created_at %></p>
+    <% if order.packaged? %>
+      <%= button_to 'Ship', "/admin/orders/#{order.id}", method: :patch %>
+    <% end %>
     <hr>
   </article>
 <% end %>

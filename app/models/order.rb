@@ -39,4 +39,8 @@ class Order < ApplicationRecord
       end
       ")
   end
+
+  def packaged?
+    status == 'Packaged'
+  end
 end
