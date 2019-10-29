@@ -16,7 +16,7 @@
             <%= link_to 'Activate Item', "/merchant/items/#{item.id}/activate_deactivate/activate", method: :patch %>
           <% end %><br>
           <% if merchant_admin? %>
-            <%= link_to 'Edit', merchant_items_edit_path(item.id) %>
+            <%= link_to 'Edit', merchant_items_edit_path(item.id) %><br>
             <% if item.no_orders? %>
               <%= link_to 'Delete Item', merchant_item_disable_path(item.id), method: :patch %>
             <% end  %>
