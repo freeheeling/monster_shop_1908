@@ -9,6 +9,7 @@ describe Merchant, type: :model do
     it { should validate_presence_of :city }
     it { should validate_presence_of :state }
     it { should validate_presence_of :zip }
+    it { should_not allow_value(nil).for(:enabled?) }
   end
 
   describe 'relationships' do
