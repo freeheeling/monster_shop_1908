@@ -54,6 +54,8 @@ RSpec.describe 'As an Admin User' do
         expect(page).to have_content("Total Quantity: #{order.total_quantity}")
         expect(page).to have_content("Grand Total: $#{order.grand_total}")
       end
+      
+      expect(page).to have_link('View Items')
     end
   end
 end
