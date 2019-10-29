@@ -5,7 +5,7 @@ class Admin::DashboardController < Admin::BaseController
     @orders = Order.sort_orders
   end
 
-  def update_status
+  def update_order_status
     @order = Order.find(params[:order_id])
     @order.update_status(2)
     redirect_to admin_path
