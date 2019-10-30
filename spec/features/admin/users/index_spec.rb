@@ -73,9 +73,7 @@ RSpec.describe 'As an admin user' do
 
       within "#user-#{@dog_employee.id}" do
         expect(page).to have_link('Disable')
-      end
-
-      
+      end   
     end
   end
 end
