@@ -12,6 +12,14 @@ RSpec.describe 'As an admin user' do
       visit merchants_path
     end
 
+    it 'I can see a link to create a new merchant' do
+      expect(page).to have_link('New Merchant')
+
+      click_on 'New Merchant'
+
+      expect(current_path).to eq(new_merchant_path)
+    end
+
     it 'it shows all merchants with their name, city, and state' do
       within "#merchant-#{@bike_shop.id}" do
         expect(page).to have_link(@bike_shop.name)
@@ -28,19 +36,19 @@ RSpec.describe 'As an admin user' do
       within "#merchant-#{@bike_shop.id}" do
         click_link 'Disable'
       end
-      
+
       @bike_shop.reload
       expect(current_path).to eq(merchants_path)
       expect(@bike_shop.enabled?).to eq(false)
-      
+
       within "#merchant-#{@bike_shop.id}" do
         expect(page).to have_link('Enable')
       end
-      
+
       within "#merchant-#{@dog_shop.id}" do
         click_link 'Enable'
       end
-      
+
       @dog_shop.reload
       expect(current_path).to eq(merchants_path)
       expect(@dog_shop.enabled?).to eq(true)
@@ -49,7 +57,7 @@ RSpec.describe 'As an admin user' do
         expect(page).to have_link('Disable')
       end
     end
-      
+
     it 'displays a flash message when a merchant account is disabled' do
       within "#merchant-#{@bike_shop.id}" do
         click_link 'Disable'
@@ -111,4 +119,3 @@ RSpec.describe 'As an admin user' do
     end
   end
 end
-      
