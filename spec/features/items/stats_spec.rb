@@ -38,13 +38,13 @@ describe 'Items Index Page' do
       within '#most-popular-items' do
         expect(page).to have_content('Most Popular Items:')
         expect(page).to have_content("#{@tire.name}: 12 purchased\n#{@lock.name}: 10 purchased\n#{@helmet.name}: 8 purchased\n#{@chain.name}: 6 purchased\n#{@pump.name}: 3 purchased")
-        expect(page).to_not have_content(@seat.name.to_s)
+        expect(page).to_not have_content(@seat.name)
       end
 
       within '#least-popular-items' do
         expect(page).to have_content('Least Popular Items:')
         expect(page).to have_content("#{@seat.name}: 1 purchased\n#{@pump.name}: 3 purchased\n#{@chain.name}: 6 purchased\n#{@helmet.name}: 8 purchased\n#{@lock.name}: 10 purchased")
-        expect(page).to_not have_content(@tire.name.to_s)
+        expect(page).to_not have_content(@tire.name)
       end
     end
   end

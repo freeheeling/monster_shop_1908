@@ -48,11 +48,11 @@ describe 'As a logged in Merchant (employee/admin)' do
   it 'I only see the items in the order that are being purchased from my merchant' do
     expect(current_path).to eq("/merchant/orders/#{@order.id}")
 
-    expect(page).to have_content(@user.name.to_s)
-    expect(page).to have_content(@user.address.to_s)
-    expect(page).to have_content(@user.city.to_s)
-    expect(page).to have_content(@user.state.to_s)
-    expect(page).to have_content(@user.zip.to_s)
+    expect(page).to have_content(@user.name)
+    expect(page).to have_content(@user.address)
+    expect(page).to have_content(@user.city)
+    expect(page).to have_content(@user.state)
+    expect(page).to have_content(@user.zip)
 
     within "#item-#{@pump.id}" do
       expect(page).to have_content(@pump.name)
