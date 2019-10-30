@@ -8,10 +8,10 @@
       <p>Description: <%= item_order.item.description %></p>
       <img src= <%= item_order.item.image %>>
       <p>Quantity: <%= item_order.quantity %></p>
-      <p>Price: <%= item_order.price %></p>
-      <p>Subtotal: <%= item_order.subtotal %></p>
+      <p>Price: <%= number_to_currency(item_order.price) %></p>
+      <p>Subtotal: <%= number_to_currency(item_order.subtotal) %></p>
     </article>
   <% end %>
 <% end %>
 <p>Total Quantity: <%= total_quantity %></p>
-<p>Grand Total: <%= grand_total %></p>
+<p>Grand Total: <%= number_to_currency(grand_total) %></p>

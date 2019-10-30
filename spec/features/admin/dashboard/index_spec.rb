@@ -26,6 +26,7 @@ RSpec.describe 'As an admin user' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@site_admin)
     end
+
     it 'it shows all orders and the user for that order' do
       visit admin_path
 
@@ -84,6 +85,29 @@ RSpec.describe 'As an admin user' do
       within "#order-#{@order_3.id}" do
         expect(page).to_not have_button('Ship')
       end
+    end
+
+    it 'the order ID is a link to an admin-only view of that order' do
+      visit admin_path
+
+      within "#order-#{@order_1.id}" do
+        expect(page).to have_link(@order_1.id)
+      end
+
+      within "#order-#{@order_2.id}" do
+        expect(page).to have_link(@order_2.id)
+      end
+
+      within "#order-#{@order_3.id}" do
+        expect(page).to have_link(@order_3.id)
+      end
+
+      within "#order-#{@order_4.id}" do
+        expect(page).to have_link(@order_4.id)
+        click_link "#{@order_4.id}"
+      end
+
+      expect(current_path).to eq(admin_user_order_path(@user_1.id, @order_4.id))
     end
   end
 end
