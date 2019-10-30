@@ -144,7 +144,7 @@ describe Merchant, type: :model do
       
       order_2 = user_2.orders.create!(name: 'Mike', address: '123 Mike Ave', city: 'Chocolate', state: 'AL', zip: 14_044)
 
-      order_2.item_orders.create!(item: pump, price: pump.price, quantity: 2)
+      order_2.item_orders.create!(item: pump, price: pump.price, quantity: 1000)
       order_2.item_orders.create!(item: tire, price: tire.price, quantity: 8)
       name = Item.five_most_popular_items.map(&:name)
 
@@ -191,7 +191,7 @@ describe Merchant, type: :model do
 
       order_2 = user_2.orders.create!(name: 'Mike', address: '123 Mike Ave', city: 'Chocolate', state: 'AL', zip: 14_044)
 
-      order_2.item_orders.create!(item: pump, price: pump.price, quantity: 2)
+      order_2.item_orders.create!(item: pump, price: pump.price, quantity: 1000)
       order_2.item_orders.create!(item: tire, price: tire.price, quantity: 8)
 
       name = Item.five_least_popular_items.map(&:name)
