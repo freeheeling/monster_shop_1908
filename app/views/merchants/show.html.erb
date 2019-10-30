@@ -13,7 +13,7 @@
     <section class = "distinct-cities">
       <h2>Cities that order these items:</h2>
       <% @merchant.distinct_cities.each do |city| %>
-        <p><%= city %></p>
+        <h3><li><%= city %></li></h3>
       <% end %>
     <% end %>
   </section>

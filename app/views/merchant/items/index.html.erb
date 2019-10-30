@@ -1,7 +1,7 @@
 <h1>All My Items</h1>
 
 <% if merchant_admin? %>
-  <%= link_to 'Add New Item', merchant_items_new_path %>
+  <h3 align = "center"><%= link_to 'Add New Item', merchant_items_new_path %></h3>
 <% end %>
 <section class="grid-container">
   <% @items.each do |item| %>
