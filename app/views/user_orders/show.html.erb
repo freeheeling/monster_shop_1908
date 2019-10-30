@@ -1,4 +1,4 @@
-<h1>ID: <%= @order.id %></h1>
+<h1>Order ID: <%= @order.id %></h1>
 <article id='order-info'>
   <%= render partial: 'partials/order_info',
     locals: {
@@ -15,4 +15,3 @@
   <p><%= link_to 'Cancel Order', profile_order_path(@order), method: :patch %>
 <% end %>
 </article>
-

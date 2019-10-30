@@ -40,6 +40,18 @@ img{
 section[id*='review'] {
   background-color: #DCDCDC;
 }
+
+.button {
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0px 0px;
+  cursor: pointer;
+}
+
 .list-reviews {
   display: grid;
   width: 50%;

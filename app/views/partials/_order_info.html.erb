@@ -6,7 +6,7 @@
     <article id='item-order-<%= item_order.id %>'>
       <p>Name: <%= item_order.item.name %></p>
       <p>Description: <%= item_order.item.description %></p>
-      <img src= <%= item_order.item.image %>>
+      <img src= <%= item_order.item.image %> style="width:150px">
       <p>Quantity: <%= item_order.quantity %></p>
       <p>Price: <%= number_to_currency(item_order.price) %></p>
       <p>Subtotal: <%= number_to_currency(item_order.subtotal) %></p>
