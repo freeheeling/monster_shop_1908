@@ -26,10 +26,15 @@ class Merchant < ApplicationRecord
   end
 
   def distinct_cities
-    item_orders.distinct.joins(:order).pluck(:city)
+    item_orders.distinct.joins(order: :user)
+      .where('"users"."enabled?" = \'t\'')
+      .pluck('orders.city')
   end
 
   def specific_orders
-    item_orders.group(:order_id).select('item_orders.order_id, sum(quantity) as order_total_quantity, sum(quantity * item_orders.price) as order_total_cost')
+    item_orders.group(:order_id)
+      .select('item_orders.order_id, sum(quantity) as order_total_quantity,
+        sum(quantity * item_orders.price) as order_total_cost'
+      )
   end
 end
