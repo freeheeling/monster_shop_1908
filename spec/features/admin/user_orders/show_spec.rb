@@ -16,10 +16,9 @@ RSpec.describe 'As an Admin User' do
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(site_admin)
 
-      visit admin_user_show_path(user_1.id)
+      visit "/admin/users/#{user_1.id}"
 
       within '#user-order-links' do
-        expect(page).to have_link(order_1.id)
         click_on "#{order_1.id}"
       end
 
@@ -30,7 +29,7 @@ RSpec.describe 'As an Admin User' do
         expect(page).to have_content("Last Updated: #{order_1.updated_at}")
         expect(page).to have_content("Status: #{order_1.status}")
         expect(page).to have_content("Total Quantity: #{order_1.total_quantity}")
-        expect(page).to have_content("Grand Total: #{order_1.grand_total}")
+        expect(page).to have_content("Grand Total: $#{order_1.grand_total}")
       end
 
       within "#item-order-#{item_order_1.id}" do
@@ -38,8 +37,8 @@ RSpec.describe 'As an Admin User' do
         expect(page).to have_content("Description: #{tire.description}")
         expect(page).to have_css("img[src*='#{tire.image}']")
         expect(page).to have_content("Quantity: #{item_order_1.quantity}")
-        expect(page).to have_content("Price: #{item_order_1.price}")
-        expect(page).to have_content("Subtotal: #{item_order_1.subtotal}")
+        expect(page).to have_content("Price: $#{item_order_1.price}")
+        expect(page).to have_content("Subtotal: $#{item_order_1.subtotal}")
       end
 
       within "#item-order-#{item_order_2.id}" do
@@ -47,8 +46,8 @@ RSpec.describe 'As an Admin User' do
         expect(page).to have_content("Description: #{pull_toy.description}")
         expect(page).to have_css("img[src*='#{pull_toy.image}']")
         expect(page).to have_content("Quantity: #{item_order_2.quantity}")
-        expect(page).to have_content("Price: #{item_order_2.price}")
-        expect(page).to have_content("Subtotal: #{item_order_2.subtotal}")
+        expect(page).to have_content("Price: $#{item_order_2.price}")
+        expect(page).to have_content("Subtotal: $#{item_order_2.subtotal}")
       end
     end
   end

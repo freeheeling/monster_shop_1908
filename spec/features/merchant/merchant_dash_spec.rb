@@ -60,14 +60,14 @@ describe 'As a logged in Merchant (employee/admin)' do
     visit merchant_dashboard_path
 
     within "#order-#{order_1.id}" do
-      expect(page).to have_link(order_1.id.to_s)
+      expect(page).to have_link("#{order_1.id}")
       expect(page).to have_content("Date Created: #{order_1.created_at}")
       expect(page).to have_content("Total Quantity: #{order_1.total_quantity}")
       expect(page).to have_content("Grand Total: $#{order_1.grand_total}")
     end
 
     within "#order-#{order_2.id}" do
-      expect(page).to have_link(order_2.id.to_s)
+      expect(page).to have_link("#{order_2.id}")
       expect(page).to have_content("Date Created: #{order_2.created_at}")
       expect(page).to have_content("Total Quantity: #{order_2.total_quantity}")
       expect(page).to have_content("Grand Total: $#{order_2.grand_total}")

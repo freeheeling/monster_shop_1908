@@ -12,6 +12,8 @@ class User < ApplicationRecord
   validates_uniqueness_of :email
   validates_presence_of :password_digest
 
+  validates_inclusion_of :enabled?, in: [true, false]
+
   validates_length_of :zip, is: 5
   validates_numericality_of :zip
 

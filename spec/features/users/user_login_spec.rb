@@ -52,6 +52,28 @@ RSpec.describe 'As a User' do
       expect(find_field(:password).value).to eq(nil)
     end
 
+    it 'cannot login if the user is disabled' do
+      user = User.create(
+        name: 'Bob',
+        address: '123 Main',
+        city: 'Denver',
+        state: 'CO',
+        zip: 80_233,
+        email: 'bob@email.com',
+        password: 'secure',
+        enabled?: false
+      )
+
+      fill_in :email, with: user.email
+      fill_in :password, with: user.password
+
+      click_on 'Sign me in'
+
+      expect(page).to have_content("Your user account is disabled!")
+      expect(find_field(:email).value).to eq(nil)
+      expect(find_field(:password).value).to eq(nil)
+    end
+
     describe 'as a regular user' do
       it 'when I enter my valid credentials, I am redirected to my profile page' do
         user = User.create(

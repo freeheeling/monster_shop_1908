@@ -37,7 +37,7 @@ RSpec.describe('New Order Page') do
 
       within "#order-item-#{@tire.id}" do
         expect(page).to have_link(@tire.name)
-        expect(page).to have_link(@tire.merchant.name.to_s)
+        expect(page).to have_link("#{@tire.merchant.name}")
         expect(page).to have_content("$#{@tire.price}")
         expect(page).to have_content('1')
         expect(page).to have_content('$100')
@@ -45,7 +45,7 @@ RSpec.describe('New Order Page') do
 
       within "#order-item-#{@paper.id}" do
         expect(page).to have_link(@paper.name)
-        expect(page).to have_link(@paper.merchant.name.to_s)
+        expect(page).to have_link("#{@paper.merchant.name}")
         expect(page).to have_content("$#{@paper.price}")
         expect(page).to have_content('2')
         expect(page).to have_content('$40')
@@ -53,7 +53,7 @@ RSpec.describe('New Order Page') do
 
       within "#order-item-#{@pencil.id}" do
         expect(page).to have_link(@pencil.name)
-        expect(page).to have_link(@pencil.merchant.name.to_s)
+        expect(page).to have_link("#{@pencil.merchant.name}")
         expect(page).to have_content("$#{@pencil.price}")
         expect(page).to have_content('1')
         expect(page).to have_content('$2')

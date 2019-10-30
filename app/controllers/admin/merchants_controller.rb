@@ -6,7 +6,7 @@ class Admin::MerchantsController < Admin::BaseController
     @merchant = Merchant.find(params[:merchant_id])
   end
 
-  def toggle_active
+  def toggle_enabled
     merchant = Merchant.find(params[:merchant_id])
     is_enabled = merchant.enabled?
     merchant.update_attributes(enabled?: !is_enabled)

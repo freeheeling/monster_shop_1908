@@ -37,7 +37,7 @@ RSpec.describe 'Cart show' do
           within "#cart-item-#{item.id}" do
             expect(page).to have_link(item.name)
             expect(page).to have_css("img[src*='#{item.image}']")
-            expect(page).to have_link(item.merchant.name.to_s)
+            expect(page).to have_link("#{item.merchant.name}")
             expect(page).to have_content("$#{item.price}")
             expect(page).to have_content('1')
             expect(page).to have_content("$#{item.price}")

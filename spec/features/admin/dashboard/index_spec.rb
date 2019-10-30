@@ -91,19 +91,19 @@ RSpec.describe 'As an admin user' do
       visit admin_path
 
       within "#order-#{@order_1.id}" do
-        expect(page).to have_link(@order_1.id)
+        expect(page).to have_link("#{@order_1.id}")
       end
 
       within "#order-#{@order_2.id}" do
-        expect(page).to have_link(@order_2.id)
+        expect(page).to have_link("#{@order_2.id}")
       end
 
       within "#order-#{@order_3.id}" do
-        expect(page).to have_link(@order_3.id)
+        expect(page).to have_link("#{@order_3.id}")
       end
 
       within "#order-#{@order_4.id}" do
-        expect(page).to have_link(@order_4.id)
+        expect(page).to have_link("#{@order_4.id}")
         click_link "#{@order_4.id}"
       end
 
