@@ -52,7 +52,7 @@ RSpec.describe 'As an Admin User' do
     end
 
     describe 'then click a link to visit a user\'s order show page' do
-      it 'it displays a link to cancel the order' do
+      it 'it displays a link to cancel an order that is Pending' do
         user_1 = User.create(name: 'User 1', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'user_1@user.com', password: 'secure', role: 0)
         dog_shop = Merchant.create(name: "Brian's Dog Shop", address: '125 Doggo St.', city: 'Denver', state: 'CO', zip: 80_210)
         bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '125 Bike St.', city: 'Denver', state: 'CO', zip: 80_210)
