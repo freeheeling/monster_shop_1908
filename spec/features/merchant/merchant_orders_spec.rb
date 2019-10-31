@@ -67,14 +67,14 @@ describe 'As a logged in Merchant (employee/admin)' do
 
   it 'I can only fullfill orders if I have enough inventory' do
     within "#item-#{@tire.id}" do
-      expect(page).to_not have_link("Fulfill Order: #{@tire.name}")
+      expect(page).to_not have_link('Fulfill Order')
       expect(page).to have_content("There are not enough #{@tire.name} in inventory to fullfill this order")
     end
   end
 
   it 'I can click the fulfill order link and that item on the order is now fulfilled' do
     within "#item-#{@pump.id}" do
-      click_link "Fulfill Order: #{@pump.name}"
+      click_link 'Fulfill Order'
     end
 
     expect(page).to have_content("The #{@pump.name} is now fulfilled.")

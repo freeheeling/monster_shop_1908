@@ -16,7 +16,7 @@ class MerchantsController < ApplicationController
     if merchant.save
       redirect_to merchants_path
     else
-      flash[:error] = merchant.errors.full_messages.to_sentence
+      flash.now[:error] = merchant.errors.full_messages.to_sentence
       render :new
     end
   end

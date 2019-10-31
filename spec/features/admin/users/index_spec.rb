@@ -51,7 +51,7 @@ RSpec.describe 'As an admin user' do
 
       @user_1.reload
 
-      expect(@user_1.enabled?).to eq(false) 
+      expect(@user_1.enabled?).to eq(false)
 
       within "#user-#{@user_1.id}" do
         expect(page).to have_link('Enable')
@@ -69,11 +69,11 @@ RSpec.describe 'As an admin user' do
 
       @dog_employee.reload
 
-      expect(@dog_employee.enabled?).to eq(true) 
+      expect(@dog_employee.enabled?).to eq(true)
 
       within "#user-#{@dog_employee.id}" do
         expect(page).to have_link('Disable')
-      end   
+      end
     end
   end
 end

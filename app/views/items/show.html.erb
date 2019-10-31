@@ -17,10 +17,14 @@
       <% else %>
         <p style= "color:red">Inactive</p>
       <% end %>
-      <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
-      <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete if @item.no_orders?%></p>
-      <%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %>
-      <% if @item.active? %>
+      <% if merchant_admin? || merchant_employee? || site_admin? %>
+        <p><%= link_to "Edit Item", "/items/#{@item.id}/edit" %></p>
+        <p><%= link_to "Delete Item", "/items/#{@item.id}", method: :delete if @item.no_orders?%></p>
+      <% end %>
+      <% if current_user %>
+        <%= link_to "Add Review", "/items/#{@item.id}/reviews/new" %>
+      <% end %>
+      <% if @item.active? && !site_admin? %>
         <%= button_to "Add To Cart", "/cart/#{@item.id}", method: :post %>
       <% end %>
     </section>
@@ -51,8 +55,10 @@
         <%= review.title %>
         <%= review.content %>
         Rating: <%= review.rating %>/5
-        <%= link_to "Edit", "/reviews/#{review.id}/edit" %>
-        <%= link_to "Delete", "/reviews/#{review.id}", method: :delete %>
+        <% if current_user %>
+          <%= link_to "Edit", "/reviews/#{review.id}/edit" %>
+          <%= link_to "Delete", "/reviews/#{review.id}", method: :delete %>
+        <% end %>
       </section>
     <% end %>
   <% end %>

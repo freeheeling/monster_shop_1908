@@ -14,4 +14,7 @@
 <% if @order.status == 'Pending' %>
   <p><%= link_to 'Cancel Order', profile_order_path(@order), method: :patch %>
 <% end %>
+<% if @order.status == 'Packaged' %>
+  <p><%= link_to 'Cancel Order', profile_order_path(@order), method: :patch %>
+<% end %>
 </article>

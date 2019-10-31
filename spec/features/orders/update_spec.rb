@@ -48,7 +48,7 @@ RSpec.describe 'Order Update' do
       visit merchant_orders_path(@order)
 
       within "#item-#{@tire.id}" do
-        click_link "Fulfill Order: #{@tire.name}"
+        click_link 'Fulfill Order'
       end
 
       @order.reload

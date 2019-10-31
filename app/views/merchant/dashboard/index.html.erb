@@ -3,12 +3,11 @@
   <h3>Merchant Information: </h3>
   <p><%= @merchant.address %></p>
   <p><%= "#{@merchant.city}, #{@merchant.state} #{@merchant.zip}" %></p>
-</section>
+</section><br>
 
-<br>
+<h3>Current Items for Sale: <%= link_to 'View Items', merchant_user_items_path %></h3><br>
 
 <h3>Orders:</h3>
-
 <% @merchant.specific_orders.each do |itemorder| %>
   <section id="order-<%=itemorder.order_id%>">
     <p>Order #<%= link_to("#{itemorder.order_id}", merchant_orders_path(itemorder.order_id)) %></p>
@@ -19,9 +18,3 @@
     <hr>
   </section>
 <% end %>
-
-<br>
-
-<h3>Current Items for Sale: </h3>
-
-<%= link_to 'View Items', merchant_user_items_path %>
