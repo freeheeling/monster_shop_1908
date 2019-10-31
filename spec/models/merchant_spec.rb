@@ -54,7 +54,7 @@ describe Merchant, type: :model do
 
     it 'distinct_cities' do
       chain = @meg.items.create(name: 'Chain', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
-      user = User.create(
+      user_1 = User.create(
         name: 'Bob',
         address: '123 Main',
         city: 'Denver',
@@ -63,12 +63,25 @@ describe Merchant, type: :model do
         email: 'bob@email.com',
         password: 'secure'
       )
-      order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
-      order_2 = user.orders.create!(name: 'Brian', address: '123 Brian Ave', city: 'Denver', state: 'CO', zip: 17_033)
-      order_3 = user.orders.create!(name: 'Dao', address: '123 Mike Ave', city: 'Denver', state: 'CO', zip: 17_033)
+
+      user_2 = User.create(
+        name: 'Dan',
+        address: '123 Main',
+        city: 'Boulder',
+        state: 'CO',
+        zip: 80_303,
+        email: 'Dan@email.com',
+        password: 'secure',
+        enabled?: false
+      )
+      order_1 = user_1.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
+      order_2 = user_1.orders.create!(name: 'Brian', address: '123 Brian Ave', city: 'Denver', state: 'CO', zip: 17_033)
+      order_3 = user_1.orders.create!(name: 'Dao', address: '123 Mike Ave', city: 'Denver', state: 'CO', zip: 17_033)
+      order_4 = user_2.orders.create!(name: 'Dao', address: '123 Mike Ave', city: 'Boulder', state: 'CO', zip: 80_303)
       order_1.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
       order_2.item_orders.create!(item: chain, price: chain.price, quantity: 2)
       order_3.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
+      order_4.item_orders.create!(item: @tire, price: @tire.price, quantity: 2)
 
       expect(@meg.distinct_cities.sort).to eq(%w[Denver Hershey])
     end
@@ -112,7 +125,7 @@ describe Merchant, type: :model do
       pump = @meg.items.create(name: 'Pump', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       lock = @meg.items.create(name: 'Lock', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
 
-      user = User.create(
+      user_1 = User.create(
         name: 'Bob',
         address: '123 Main',
         city: 'Denver',
@@ -122,15 +135,30 @@ describe Merchant, type: :model do
         password: 'secure'
       )
 
-      order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
+      user_2 = User.create(
+        name: 'Dan',
+        address: '123 Main',
+        city: 'Denver',
+        state: 'CO',
+        zip: 80_233,
+        email: 'Dan@email.com',
+        password: 'secure',
+        enabled?: false
+      )
 
+      order_1 = user_1.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
+      
       order_1.item_orders.create!(item: pump, price: pump.price, quantity: 2)
       order_1.item_orders.create!(item: tire, price: tire.price, quantity: 8)
       order_1.item_orders.create!(item: helmet, price: helmet.price, quantity: 3)
       order_1.item_orders.create!(item: seat, price: seat.price, quantity: 5)
       order_1.item_orders.create!(item: chain, price: chain.price, quantity: 7)
       order_1.item_orders.create!(item: lock, price: lock.price, quantity: 10)
+      
+      order_2 = user_2.orders.create!(name: 'Mike', address: '123 Mike Ave', city: 'Chocolate', state: 'AL', zip: 14_044)
 
+      order_2.item_orders.create!(item: pump, price: pump.price, quantity: 1000)
+      order_2.item_orders.create!(item: tire, price: tire.price, quantity: 8)
       name = Item.five_most_popular_items.map(&:name)
 
       expect(name).to eq([lock.name, tire.name, chain.name, seat.name, helmet.name])
@@ -144,7 +172,7 @@ describe Merchant, type: :model do
       pump = @meg.items.create(name: 'Pump', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
       lock = @meg.items.create(name: 'Lock', description: "It'll never break!", price: 40, image: 'https://www.rei.com/media/4e1f5b05-27ef-4267-bb9a-14e35935f218?size=784x588', inventory: 22)
 
-      user = User.create(
+      user_1 = User.create(
         name: 'Bob',
         address: '123 Main',
         city: 'Denver',
@@ -154,7 +182,18 @@ describe Merchant, type: :model do
         password: 'secure'
       )
 
-      order_1 = user.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
+      user_2 = User.create(
+        name: 'Dan',
+        address: '123 Main',
+        city: 'Denver',
+        state: 'CO',
+        zip: 80_233,
+        email: 'Dan@email.com',
+        password: 'secure',
+        enabled?: false
+      )
+
+      order_1 = user_1.orders.create!(name: 'Meg', address: '123 Stang Ave', city: 'Hershey', state: 'PA', zip: 17_033)
 
       order_1.item_orders.create!(item: pump, price: pump.price, quantity: 2)
       order_1.item_orders.create!(item: tire, price: tire.price, quantity: 8)
@@ -162,6 +201,11 @@ describe Merchant, type: :model do
       order_1.item_orders.create!(item: seat, price: seat.price, quantity: 5)
       order_1.item_orders.create!(item: chain, price: chain.price, quantity: 7)
       order_1.item_orders.create!(item: lock, price: lock.price, quantity: 10)
+
+      order_2 = user_2.orders.create!(name: 'Mike', address: '123 Mike Ave', city: 'Chocolate', state: 'AL', zip: 14_044)
+
+      order_2.item_orders.create!(item: pump, price: pump.price, quantity: 1000)
+      order_2.item_orders.create!(item: tire, price: tire.price, quantity: 8)
 
       name = Item.five_least_popular_items.map(&:name)
 

@@ -32,10 +32,26 @@ class Item < ApplicationRecord
   end
 
   def self.five_most_popular_items
-    joins(:item_orders).group(:id).select('items.name, sum(quantity) as purchase_amount').order("purchase_amount desc").limit(5)
+    find_by_sql("select items.name, sum(quantity) as purchase_amount from items 
+      inner join item_orders on item_orders.item_id = items.id 
+      inner join orders on orders.id = item_orders.order_id 
+      inner join users on users.id = orders.user_id 
+      where \"users\".\"enabled?\" = 't' 
+      group by items.name 
+      order by purchase_amount desc 
+      limit 5;"
+    )
   end
 
   def self.five_least_popular_items
-    joins(:item_orders).group(:id).select('items.name, sum(quantity) as purchase_amount').order("purchase_amount").limit(5)
+    find_by_sql("select items.name, sum(quantity) as purchase_amount from items 
+      inner join item_orders on item_orders.item_id = items.id 
+      inner join orders on orders.id = item_orders.order_id 
+      inner join users on users.id = orders.user_id 
+      where \"users\".\"enabled?\" = 't' 
+      group by items.name 
+      order by purchase_amount
+      limit 5;"
+    )
   end
 end
