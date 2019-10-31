@@ -37,7 +37,7 @@
         <td><p><%= item_order.quantity%></p></td>
         <% if (item_order.item.inventory < item_order.quantity) && (item_order.status == "Unfulfilled") %>
           <td><p> There are not enough <%= item_order.item.name %> in inventory to fullfill this order </p></td>
-        <% elsif @order.status == 3  %>
+        <% elsif item_order.order.status == 'Cancelled'  %>
           <td><p> This order has been cancelled </p></td>
         <% elsif item_order.status == "Unfulfilled" %>
           <td><p><%= link_to 'Fulfill Order', "/merchant/orders/#{item_order.order_id}/#{item_order.id}/fulfill", method: :patch %> </p></td>
