@@ -59,16 +59,9 @@ RSpec.describe 'As a merchant' do
         expect(@tire.image).to eq('https://images-na.ssl-images-amazon.com/images/I/51HMpDXItgL._SX569_.jpg')
         expect(@tire.inventory).to eq(25)
         expect(@tire.active?).to eq(true)
-
-        # Let's ask about this!
-
-        # within "#item-#{@tire.id}" do
-        #   expect(page).to have_content('Chamois Buttr')
-        #   expect(page).to have_content('Deactivate Item')
-        # end
       end
 
-      it 'must have both price and inventory greater that zero for item creation' do
+      it 'must have both price and inventory greater than zero for item creation' do
         fill_in :name, with: 'Chamois Buttr'
         fill_in :price, with: -1
         fill_in :description, with: "No more chaffin'!"

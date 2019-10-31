@@ -12,6 +12,7 @@
   <p><%= link_to 'Edit Profile', "/admin/users/#{@user.id}/edit" %></p>
 </section>
 <br>
+
 <section id='user-order-links'>
   <h3> <%= @user.name %>'s Orders</h3>
   <% @user.orders.each do |order| %>

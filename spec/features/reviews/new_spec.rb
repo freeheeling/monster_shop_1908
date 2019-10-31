@@ -2,10 +2,13 @@
 
 require 'rails_helper'
 
-RSpec.describe 'review creation', type: :feature do
+RSpec.describe 'review creation as a Regular User', type: :feature do
   before(:each) do
     @bike_shop = Merchant.create(name: "Brian's Bike Shop", address: '123 Bike Rd.', city: 'Denver', state: 'CO', zip: 80_203)
     @chain = @bike_shop.items.create(name: 'Chain', description: "It'll never break!", price: 50, image: 'https://www.rei.com/media/b61d1379-ec0e-4760-9247-57ef971af0ad?size=784x588', inventory: 5)
+    @user = User.create(name: 'Bob', address: '123 Main', city: 'Denver', state: 'CO', zip: 80_233, email: 'bob@email.com', password: 'secure')
+
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
   end
   describe 'when I visit the item show page' do
     it 'I see a link to add a review for that item' do
