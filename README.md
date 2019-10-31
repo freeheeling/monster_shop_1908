@@ -19,4 +19,6 @@ bundle install
 Or visit the website:
 [Monster Shop Website](https://intense-badlands-94881.herokuapp.com/)
 
-## Data Structure 
+## Data Structure
+
+<img width="1015" src="https://i.imgur.com/70gH0pw.png">
