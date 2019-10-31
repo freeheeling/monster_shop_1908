@@ -41,10 +41,6 @@ class Item < ApplicationRecord
       order by purchase_amount desc 
       limit 5;"
     )
-    # includes(item_orders: [orders: :users]).group(:id).where('user.enabled? = true').select('item.name, sum(quantity) as purchase_amount').order('purchase_amount desc').limit(5)
-    # joins(item_orders: [orders: :users]).select('item.name, sum(quantity)').where('user.enabled? = true')
-  #   select items.name, item_orders.id as item_order_id, orders.id as order_id, users.id as user_id from items inner join item_orders on item_orders.item_id = items.id
-  # inner join orders on orders.id = item_orders.order_id inner join users on users.id = orders.user_id;
   end
 
   def self.five_least_popular_items
