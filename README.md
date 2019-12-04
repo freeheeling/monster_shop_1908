@@ -10,7 +10,7 @@ This application was built utilizing an MVC framework, CRUD functionality, and R
 ## Getting Started
 Clone this repo:
 ```
-git@github.com:CoopTang/monster_shop_1908.git
+https://github.com/freeheeling/monster_shop_1908.git
 ```
 Run the following command to install the bundle:
 ```
